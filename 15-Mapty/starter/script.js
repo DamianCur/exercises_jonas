@@ -12,13 +12,29 @@ const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
 
 
-if(!navigator.geolocation) throw Error("Geolocation is not supported.")
+if (!navigator.geolocation) throw Error("Geolocation is not supported.")
 
 const navLocationSuccess = (position) => {
-    const {latitude} = position.coords
-    const {longitude} = position.coords
-    console.log(`https://www.google.pl/maps/@${latitude},${longitude}`);
-    
+    const {
+        latitude
+    } = position.coords
+    const {
+        longitude
+    } = position.coords
+
+    const coords = [latitude, longitude]
+
+
+    const map = L.map('map').setView(coords, 13);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.marker(coords).addTo(map)
+        .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
+        .openPopup();
+
 }
 
 const navLocationError = () => {
@@ -26,6 +42,3 @@ const navLocationError = () => {
 }
 
 navigator.geolocation.getCurrentPosition(navLocationSuccess, navLocationError)
-
-
-
