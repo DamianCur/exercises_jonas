@@ -10,3 +10,22 @@ const inputDistance = document.querySelector('.form__input--distance');
 const inputDuration = document.querySelector('.form__input--duration');
 const inputCadence = document.querySelector('.form__input--cadence');
 const inputElevation = document.querySelector('.form__input--elevation');
+
+
+if(!navigator.geolocation) throw Error("Geolocation is not supported.")
+
+const navLocationSuccess = (position) => {
+    const {latitude} = position.coords
+    const {longitude} = position.coords
+    console.log(`https://www.google.pl/maps/@${latitude},${longitude}`);
+    
+}
+
+const navLocationError = () => {
+    alert("We cant get your location 😩")
+}
+
+navigator.geolocation.getCurrentPosition(navLocationSuccess, navLocationError)
+
+
+
