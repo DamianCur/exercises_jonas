@@ -82,5 +82,5 @@ form.addEventListener("submit", (e) => {
 })
 
 inputType.addEventListener('change', () => {
-
+//add here change dependency cycling/walking or running
 })
