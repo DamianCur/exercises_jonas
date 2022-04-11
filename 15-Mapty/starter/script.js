@@ -82,5 +82,6 @@ form.addEventListener("submit", (e) => {
 })
 
 inputType.addEventListener('change', () => {
-//add here change dependency cycling/walking or running
+ inputElevation.closest('.form__row').classList.toggle('form__row--hidden')
+ inputCadence.closest('.form__row').classList.toggle('form__row--hidden')
 })
