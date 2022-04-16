@@ -103,6 +103,14 @@ class App {
   _newWorkout(e) {
     e.preventDefault();
 
+    const isInputAnNumber = inputs => {
+      return inputs.every(input => Number.isFinite(input));
+    };
+
+    const isInputAnPositiveNumber = inputs => {
+      return inputs.every(input => input > 0);
+    };
+
     const type = inputType.value;
     const distance = +inputDistance.value;
     const duration = +inputDuration.value;
@@ -111,24 +119,27 @@ class App {
       const cadence = +inputCadence.value;
       const arrayOfRunningOptionValues = [distance, duration, cadence];
 
-      arrayOfRunningOptionValues.forEach(el => {
-        if (!Number.isFinite(el) || el <= 0) {
-          alert('The value must be a positive number!');
-          throw Error('The value must be a positive number!');
-        }
-      });
+      if (
+        !isInputAnNumber(arrayOfRunningOptionValues) ||
+        !isInputAnPositiveNumber(arrayOfRunningOptionValues)
+      ) {
+        alert('The value must be a positive number!');
+        throw Error('The value must be a positive number!');
+      }
     }
 
     if (type === 'cycling') {
       const elevation = +inputElevation.value;
       const arrayOfElevationOptionValues = [distance, duration, elevation];
-
-      arrayOfElevationOptionValues.forEach(el => {
-        if (!Number.isFinite(el) || el <= 0) {
+            
+        if (
+          !isInputAnNumber(arrayOfElevationOptionValues) ||
+          !isInputAnPositiveNumber([distance, duration])
+        ) {
           alert('The value must be a positive number!');
           throw Error('The value must be a positive number!');
         }
-      });
+  
     }
 
     const inputArray = [
