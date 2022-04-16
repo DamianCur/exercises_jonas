@@ -103,6 +103,34 @@ class App {
   _newWorkout(e) {
     e.preventDefault();
 
+    const type = inputType.value;
+    const distance = +inputDistance.value;
+    const duration = +inputDuration.value;
+
+    if (type === 'running') {
+      const cadence = +inputCadence.value;
+      const arrayOfRunningOptionValues = [distance, duration, cadence];
+
+      arrayOfRunningOptionValues.forEach(el => {
+        if (!Number.isFinite(el) || el <= 0) {
+          alert('The value must be a positive number!');
+          throw Error('The value must be a positive number!');
+        }
+      });
+    }
+
+    if (type === 'cycling') {
+      const elevation = +inputElevation.value;
+      const arrayOfElevationOptionValues = [distance, duration, elevation];
+
+      arrayOfElevationOptionValues.forEach(el => {
+        if (!Number.isFinite(el) || el <= 0) {
+          alert('The value must be a positive number!');
+          throw Error('The value must be a positive number!');
+        }
+      });
+    }
+
     const inputArray = [
       inputCadence,
       inputDistance,
