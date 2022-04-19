@@ -148,7 +148,7 @@ class App {
     }
 
     this.#workouts.push(workout);
-    this.renderWorkoutMarker(workout);
+    this._renderWorkoutMarker(workout);
 
     const inputArray = [
       inputCadence,
@@ -160,9 +160,11 @@ class App {
     inputArray.forEach(el => {
       el.value = '';
     });
+
+    this._renderWorkout(workout);
   }
 
-  renderWorkoutMarker(workout) {
+  _renderWorkoutMarker(workout) {
     L.marker(workout.coords)
       .addTo(this.#map)
       .bindPopup(
@@ -177,6 +179,23 @@ class App {
       .setPopupContent('workout')
       .openPopup();
   }
+
+  _renderWorkout(workout) {
+    const html = `
+         <li class="workout workout--running" data-id="1234567890">
+          <h2 class="workout__title">Running on April 14</h2>
+          <div class="workout__details">
+            <span class="workout__icon">🏃‍♂️</span>
+            <span class="workout__value">${workout.distance}</span>
+            <span class="workout__unit">km</span>
+          </div>
+          <div class="workout__details">
+            <span class="workout__icon">⏱</span>
+            <span class="workout__value">${workout.duration}</span>
+            <span class="workout__unit">min</span>
+          </div>`;
+  }
 }
 
 const app = new App();
+console.log(app);
