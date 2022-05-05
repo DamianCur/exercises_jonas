@@ -11,8 +11,8 @@ html {
 
 body {
   font-family: system-ui;
-  color: #555;
-  background-color: #f7f7f7;
+  color: rgb(40, 40, 40);
+  background-color: #cacaca;
   min-height: 100vh;
 
   display: flex;
@@ -29,7 +29,6 @@ body {
 .countries {
   /* margin-bottom: 8rem; */
   display: flex;
-
   font-size: 2rem;
   opacity: 0;
   transition: opacity 1s;
