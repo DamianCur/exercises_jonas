@@ -1,14 +1,28 @@
-console.log('Test start');
+const lotteryPromise = new Promise((resolve, reject) => {
+	console.log('Lottery draw is happening ⏳');
 
-setTimeout(() => {
-	console.log('0 sec timer');
-}, 0);
-
-Promise.resolve('Resolved promise 1').then((res) => console.log(res));
-
-Promise.resolve('Resolved promise 2').then((res) => {
-	for (let i = 0; i < 10000000000; i++) {}
-	console.log(res);
+	setTimeout(() => {
+		if (Math.random() >= 0.5) {
+			resolve('You win 🎁');
+		} else {
+			reject(new Error('You lost your money 😫'));
+		}
+	}, 2000);
 });
 
-console.log('Test end');
+lotteryPromise.then((res) => console.log(res)).catch((err) => console.log(err));
+
+const wait = (seconds) => {
+	return new Promise((resolve) => {
+		setTimeout(resolve, seconds * 1000);
+	}, seconds);
+};
+
+wait(2)
+	.then(() => {
+		console.log('I waited for 2 seconds');
+		return wait(1);
+	})
+	.then(() => {
+		console.log('I waited for 1 second');
+	});
