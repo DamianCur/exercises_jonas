@@ -1,0 +1,13 @@
+body {
+    background-color: rgb(167, 167, 167);
+}
+
+
+
+
+img {
+    display: block;
+    max-width: 1000px;
+    max-height: 1000px;
+    margin: 0 auto;
+}
