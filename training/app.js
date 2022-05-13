@@ -77,12 +77,13 @@ imgChange('./img/img-1.jpg')
 	})
 	.then((img) => {
 		console.log('Image two loaded ');
+		console.log('test img');
 		currentImage = img;
 		return wait(2);
 	})
 	.then(() => {
-        currentImage.style.display = 'none';
-    })
+		currentImage.style.display = 'none';
+	})
 	.catch((err) => {
 		console.error(err);
 	});
