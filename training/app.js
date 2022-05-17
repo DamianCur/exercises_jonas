@@ -40,50 +40,70 @@ PART 2
 
 TEST DATA: Images in the img folder. Test the error handler by passing a wrong image path. Set the network speed to 'Fast 3G' in the dev tools Network tab, otherwise images load too fast. */
 
-const wait = (seconds) => {
-	return new Promise((resolve) => {
-		setTimeout(resolve, seconds * 1000);
-	}, seconds);
-};
+// const wait = (seconds) => {
+// 	return new Promise((resolve) => {
+// 		setTimeout(resolve, seconds * 1000);
+// 	}, seconds);
+// };
+
+// const imgContainer = document.querySelector('.images');
+
+// const imgChange = (imgPath) => {
+// 	return new Promise((resolve, reject) => {
+// 		const img = document.createElement('img');
+// 		img.src = imgPath;
+
+// 		img.addEventListener('load', () => {
+// 			imgContainer.append(img);
+// 			resolve(img);
+// 		});
+
+// 		img.addEventListener('error', () => {
+// 			reject(new Error('Cannot load image.😫'));
+// 		});
+// 	});
+// };
+// let currentImage;
+
+// imgChange('./img/img-1.jpg')
+// 	.then((img) => {
+// 		console.log('Image one loaded ');
+// 		currentImage = img;
+// 		return wait(2);
+// 	})
+// 	.then(() => {
+// 		currentImage.style.display = 'none';
+// 		return imgChange('./img/img-2.jpg');
+// 	})
+// 	.then((img) => {
+// 		console.log('Image two loaded ');
+// 		console.log('test img');
+// 		currentImage = img;
+// 		return wait(2);
+// 	})
+// 	.then(() => {
+// 		currentImage.style.display = 'none';
+// 	})
+// 	.catch((err) => {
+// 		console.error(err);
+// 	});
 
 const imgContainer = document.querySelector('.images');
 
-const imgChange = (imgPath) => {
-	return new Promise((resolve, reject) => {
-		const img = document.createElement('img');
-		img.src = imgPath;
+const dogData = async () => {
+	try {
+		const res = await fetch('https://dog.ceo/api/breeds/image/random');
+		if (!res.ok) throw Error('Cannot fetch the data.');
 
-		img.addEventListener('load', () => {
-			imgContainer.append(img);
-			resolve(img);
-		});
-
-		img.addEventListener('error', () => {
-			reject(new Error('Cannot load image.😫'));
-		});
-	});
+		const imgJSON = await res.json();
+		console.log(imgJSON);
+		const newImg = document.createElement('img');
+		newImg.src = imgJSON.message;
+		imgContainer.appendChild(newImg);
+	} catch (err) {
+		console.error(err.message);
+	}
 };
-let currentImage;
 
-imgChange('./img/img-1.jpg')
-	.then((img) => {
-		console.log('Image one loaded ');
-		currentImage = img;
-		return wait(2);
-	})
-	.then(() => {
-		currentImage.style.display = 'none';
-		return imgChange('./img/img-2.jpg');
-	})
-	.then((img) => {
-		console.log('Image two loaded ');
-		console.log('test img');
-		currentImage = img;
-		return wait(2);
-	})
-	.then(() => {
-		currentImage.style.display = 'none';
-	})
-	.catch((err) => {
-		console.error(err);
-	});
+dogData();
+console.log('first');
