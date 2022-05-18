@@ -136,6 +136,6 @@ const getPosition = () => {
 
 
 (async () => {
-  const res = await Promise.race([getJSON(`https://restcountries.com/v3.1/name/italy`), getJSON(`https://restcountries.com/v3.1/name/poland`), getJSON(`https://restcountries.com/v3.1/name/ukraine`)])
+  const res = await Promise.race([getJSON(`https://restcountries.com/v3.1/name/italy`), getJSON(`https://restcountries.com/v3.1/name/poland`), getJSON(`https://restcountries.com/v3.1/name/uk`)])
   console.log(res[0]);
 })()
