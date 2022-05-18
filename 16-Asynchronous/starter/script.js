@@ -77,36 +77,55 @@ const getPosition = () => {
 //   console.log(position);
 // });
 
-const whereAmI = () => {
-  getPosition()
-    .then(position => {
-      console.log(position.coords);
-      const { latitude: lat, longitude: lng } = position.coords;
-      console.log(lat);
+// const whereAmI = async function () {
+//   try {
+//     const pos = await getPosition();
+//     const { latitude: lat, longitude: lng } = pos.coords;
 
-      return fetch(
-        `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}&localityLanguage=en`
-      );
-    })
+//     const resGeo = await fetch(`https://geocode.xyz/${lat},${lng}?geoit=json`);
+//     if (!resGeo.ok) throw new Error('Problem getting location data');
+//     const dataGeo = await resGeo.json();
 
-    .then(res => {
-      if (!res.ok) throw Error('Problem with geolocation');
+//     const res = await fetch(
+//       `https://restcountries.eu/rest/v2/name/${dataGeo.country}`
+//     );
+//     if (!resGeo.ok) throw new Error('Problem getting country');
+//     const data = await res.json();
+//     renderCountry(data[0]);
 
-      return res.json();
-    })
-    .then(data => {
-      console.log(`You are in ${data.city}, ${data.countryName}`);
-      return fetch(`https://restcountries.com/v3.1/name/${data.countryName}`);
-    })
-    .then(res => {
-      if (!res.ok) throw Error(`Country not found ${res.status} 😬`);
-      return res.json().then(countriesData => {
-        renderCountry(countriesData[0]);
-      });
-    })
-    .catch(err => {
-      throw Error(`Cannot get your location ${err}`);
-    });
+//     return `You are in ${dataGeo.city}, ${dataGeo.country}`;
+//   } catch (err) {
+//     console.error(`${err} 💥`);
+//     renderError(`💥 ${err.message}`);
+
+//     throw err;
+//   }
+// };
+
+// console.log('1: Will get location');
+
+// (async function () {
+//   try {
+//     const city = await whereAmI();
+//     console.log(`2: ${city}`);
+//   } catch (err) {
+//     console.error(`2: ${err.message} 💥`);
+//   }
+//   console.log('3: Finished getting location');
+// })();
+
+const get3Counteries = async (c1, c2, c3) => {
+  try {
+    Promise.all([
+      getJSON(`https://restcountries.com/v3.1/name/${c1}`),
+      getJSON(`https://restcountries.com/v3.1/name/${c2}`),
+      getJSON(`https://restcountries.com/v3.1/name/${c3}`),
+    ]);
+
+    console.log([data1.capital, data2.capital, data3.capital]);
+  } catch (err) {
+    console.error(err.message);
+  }
 };
 
-btn.addEventListener('click', whereAmI);
+get3Counteries('portugal', 'canada', 'poland');
