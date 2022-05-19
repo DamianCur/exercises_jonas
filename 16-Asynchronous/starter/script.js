@@ -159,5 +159,10 @@ Promise.race([getJSON(`https://restcountries.com/v3.1/name/uk`), timeOut(1)])
     console.error(err.message);
   });
 
-
-
+Promise.allSettled([
+  Promise.resolve('Succes'),
+  Promise.reject('ERROR'),
+  Promise.resolve('Another Succes'),
+]).then(data => {
+  console.log(data);
+});
