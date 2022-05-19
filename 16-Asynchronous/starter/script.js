@@ -134,56 +134,56 @@ const getPosition = () => {
 
 // get3Counteries('portugal', 'canada', 'poland');
 
-(async () => {
-  const res = await Promise.race([
-    getJSON(`https://restcountries.com/v3.1/name/italy`),
-    getJSON(`https://restcountries.com/v3.1/name/poland`),
-    getJSON(`https://restcountries.com/v3.1/name/uk`),
-  ]);
-  console.log(res[0]);
-})();
+// (async () => {
+//   const res = await Promise.race([
+//     getJSON(`https://restcountries.com/v3.1/name/italy`),
+//     getJSON(`https://restcountries.com/v3.1/name/poland`),
+//     getJSON(`https://restcountries.com/v3.1/name/uk`),
+//   ]);
+//   console.log(res[0]);
+// })();
 
-const timeOut = sec => {
-  return new Promise((_, reject) => {
-    setTimeout(() => {
-      reject(new Error('Request took too long.'));
-    }, sec * 1000);
-  });
-};
+// const timeOut = sec => {
+//   return new Promise((_, reject) => {
+//     setTimeout(() => {
+//       reject(new Error('Request took too long.'));
+//     }, sec * 1000);
+//   });
+// };
 
-Promise.race([getJSON(`https://restcountries.com/v3.1/name/uk`), timeOut(1)])
-  .then(data => {
-    console.log(data);
-  })
-  .catch(err => {
-    console.error(err.message);
-  });
+// Promise.race([getJSON(`https://restcountries.com/v3.1/name/uk`), timeOut(1)])
+//   .then(data => {
+//     console.log(data);
+//   })
+//   .catch(err => {
+//     console.error(err.message);
+//   });
 
-Promise.allSettled([
-  Promise.resolve('Succes'),
-  Promise.reject('ERROR'),
-  Promise.resolve('Another Succes'),
-])
-  .then(data => {
-    console.log(data);
-  })
-  .catch(err => {
-    console.error(err.message);
-  });
+// Promise.allSettled([
+//   Promise.resolve('Succes'),
+//   Promise.reject('ERROR'),
+//   Promise.resolve('Another Succes'),
+// ])
+//   .then(data => {
+//     console.log(data);
+//   })
+//   .catch(err => {
+//     console.error(err.message);
+//   });
 
 
 
-Promise.any([
-  Promise.resolve('Succes'),
-  Promise.reject('ERROR'),
-  Promise.resolve('Another Succes'),
-])
-  .then(data => {
-    console.log(data);
-  })
-  .catch(err => {
-    console.error(err.message);
-  });
+// Promise.any([
+//   Promise.resolve('Succes'),
+//   Promise.reject('ERROR'),
+//   Promise.resolve('Another Succes'),
+// ])
+//   .then(data => {
+//     console.log(data);
+//   })
+//   .catch(err => {
+//     console.error(err.message);
+//   });
 
 
   

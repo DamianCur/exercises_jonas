@@ -5,9 +5,19 @@ body {
 
 
 
-img {
+.images {
+    display: flex;
+}
+
+.images img {
     display: block;
-    max-width: 1900px;
-    max-height: 1900px;
-    margin: 0 auto;
+    width: 80rem;
+    margin: 4rem;
+}
+
+.images img.parallel {
+    width: 30rem;
+    margin: 2rem;
+    border: 3rem solid white;
+    box-shadow: 0 2rem 5rem 1rem rgba(0, 0, 0, 0.1);
 }

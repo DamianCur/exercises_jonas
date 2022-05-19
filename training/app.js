@@ -40,29 +40,29 @@ PART 2
 
 TEST DATA: Images in the img folder. Test the error handler by passing a wrong image path. Set the network speed to 'Fast 3G' in the dev tools Network tab, otherwise images load too fast. */
 
-// const wait = (seconds) => {
-// 	return new Promise((resolve) => {
-// 		setTimeout(resolve, seconds * 1000);
-// 	}, seconds);
-// };
+const wait = (seconds) => {
+	return new Promise((resolve) => {
+		setTimeout(resolve, seconds * 1000);
+	}, seconds);
+};
 
-// const imgContainer = document.querySelector('.images');
+const imgContainer = document.querySelector('.images');
 
-// const imgChange = (imgPath) => {
-// 	return new Promise((resolve, reject) => {
-// 		const img = document.createElement('img');
-// 		img.src = imgPath;
+const imgChange = (imgPath) => {
+	return new Promise((resolve, reject) => {
+		const img = document.createElement('img');
+		img.src = imgPath;
 
-// 		img.addEventListener('load', () => {
-// 			imgContainer.append(img);
-// 			resolve(img);
-// 		});
+		img.addEventListener('load', () => {
+			imgContainer.append(img);
+			resolve(img);
+		});
 
-// 		img.addEventListener('error', () => {
-// 			reject(new Error('Cannot load image.😫'));
-// 		});
-// 	});
-// };
+		img.addEventListener('error', () => {
+			reject(new Error('Cannot load image.😫'));
+		});
+	});
+};
 // let currentImage;
 
 // imgChange('./img/img-1.jpg')
@@ -88,23 +88,74 @@ TEST DATA: Images in the img folder. Test the error handler by passing a wrong i
 // 		console.error(err);
 // 	});
 
-const imgContainer = document.querySelector('.images');
+/* 
+PART 1
+Write an async function 'loadNPause' that recreates Coding Challenge #2, this time using async/await (only the part where the promise is consumed). Compare the two versions, think about the big differences, and see which one you like more.
+Don't forget to test the error handler, and to set the network speed to 'Fast 3G' in the dev tools Network tab.
 
-const dogData = async () => {
+PART 2
+1. Create an async function 'loadAll' that receives an array of image paths 'imgArr';
+2. Use .map to loop over the array, to load all the images with the 'createImage' function (call the resulting array 'imgs')
+3. Check out the 'imgs' array in the console! Is it like you expected?
+4. Use a promise combinator function to actually get the images from the array 😉
+5. Add the 'paralell' class to all the images (it has some CSS styles).
+
+TEST DATA: ['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']. To test, turn off the 'loadNPause' function.
+
+GOOD LUCK 😀
+*/
+
+// const loadNPause = async () => {
+// 	try {
+// 		let img = await imgChange('./img/img-1.jpg');
+// 		console.log('Image 1 loaded');
+// 		await wait(2);
+// 		img.style.display = 'none';
+
+// 		await wait(1);
+
+// 		img = await imgChange('./img/img-2.jpg');
+// 		console.log('Image 2 loaded');
+// 		await wait(2);
+// 		img.style.display = 'none';
+// 	} catch (err) {
+// 		console.error(err.message);
+// 	}
+// };
+
+// loadNPause();
+
+// const imgPathArr = ['./img/img-1.jpg', './img/img-2.jpg', './img/img-3.jpg'];
+
+// const loadAll = async (imgArr) => {
+// 	try {
+// 		const imgs = await imgArr.map((imgPath) => {
+// 			return imgChange(imgPath);
+// 		});
+
+// 		console.log(imgs);
+
+// 		const imgsEl = await Promise.all(imgs);
+// 		console.log(imgsEl);
+
+// 		imgsEl.forEach((el) => {
+// 			el.classList.add('parallel');
+// 		});
+// 	} catch (err) {
+// 		console.error(err.message);
+// 	}
+// };
+
+// loadAll(imgPathArr);
+
+const loadAll = async function (imgArr) {
 	try {
-		const res = await fetch('https://dog.ceo/api/breeds/image/random');
-		if (!res.ok) throw Error('Cannot fetch the data.');
-
-		const imgJSON = await res.json();
-		console.log(imgJSON);
-		const newImg = document.createElement('img');
-		newImg.src = imgJSON.message;
-		imgContainer.appendChild(newImg);
+		const imgs = imgArr.map((img) => imgChange(img));
+		const imgsEl = await Promise.all(imgs);
+		console.log(imgsEl);
+		imgsEl.forEach((img) => img.classList.add('parallel'));
 	} catch (err) {
-		console.error(err.message);
+		console.error(err);
 	}
 };
-
-dogData();
-console.log('first');
-
+loadAll(['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']);
