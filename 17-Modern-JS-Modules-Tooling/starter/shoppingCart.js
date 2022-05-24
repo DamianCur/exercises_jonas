@@ -1,5 +1,10 @@
 console.log('Exporting module');
 
+// console.log('start fething users');
+// await fetch('https://jsonplaceholder.typicode.com/users');
+
+// console.log('fnish fetching');
+
 const shippingCost = 10;
 export const cart = [];
 
@@ -10,6 +15,8 @@ export const addToCart = (product, quantity) => {
 
 const totalPrice = 237
 const totalQuantity = 23
+
+
 
 export {totalPrice, totalQuantity as tq}
 
