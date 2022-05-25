@@ -38,3 +38,5 @@ console.log(lastPost);
 
 const lastPost2 = await getLastPost()
 console.log(lastPost2);
+
+//module pattern
