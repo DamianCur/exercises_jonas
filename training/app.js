@@ -40,29 +40,29 @@ PART 2
 
 TEST DATA: Images in the img folder. Test the error handler by passing a wrong image path. Set the network speed to 'Fast 3G' in the dev tools Network tab, otherwise images load too fast. */
 
-const wait = (seconds) => {
-	return new Promise((resolve) => {
-		setTimeout(resolve, seconds * 1000);
-	}, seconds);
-};
+// const wait = (seconds) => {
+// 	return new Promise((resolve) => {
+// 		setTimeout(resolve, seconds * 1000);
+// 	}, seconds);
+// };
 
-const imgContainer = document.querySelector('.images');
+// const imgContainer = document.querySelector('.images');
 
-const imgChange = (imgPath) => {
-	return new Promise((resolve, reject) => {
-		const img = document.createElement('img');
-		img.src = imgPath;
+// const imgChange = (imgPath) => {
+// 	return new Promise((resolve, reject) => {
+// 		const img = document.createElement('img');
+// 		img.src = imgPath;
 
-		img.addEventListener('load', () => {
-			imgContainer.append(img);
-			resolve(img);
-		});
+// 		img.addEventListener('load', () => {
+// 			imgContainer.append(img);
+// 			resolve(img);
+// 		});
 
-		img.addEventListener('error', () => {
-			reject(new Error('Cannot load image.😫'));
-		});
-	});
-};
+// 		img.addEventListener('error', () => {
+// 			reject(new Error('Cannot load image.😫'));
+// 		});
+// 	});
+// };
 // let currentImage;
 
 // imgChange('./img/img-1.jpg')
@@ -148,14 +148,94 @@ GOOD LUCK 😀
 
 // loadAll(imgPathArr);
 
-const loadAll = async function (imgArr) {
-	try {
-		const imgs = imgArr.map((img) => imgChange(img));
-		const imgsEl = await Promise.all(imgs);
-		console.log(imgsEl);
-		imgsEl.forEach((img) => img.classList.add('parallel'));
-	} catch (err) {
-		console.error(err);
+// const loadAll = async function (imgArr) {
+// 	try {
+// 		const imgs = imgArr.map((img) => imgChange(img));
+// 		const imgsEl = await Promise.all(imgs);
+// 		console.log(imgsEl);
+// 		imgsEl.forEach((img) => img.classList.add('parallel'));
+// 	} catch (err) {
+// 		console.error(err);
+// 	}
+// };
+// loadAll(['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']);
+
+// ZADANIE REKRUTACYJNE
+
+//1. Damian Cur
+
+/*2. 
+
+ - Wpisując adres internetowy pierwszą rzeczą która dzieje się w tle to połączenie z serwerem DNS, który konwertuje wpisany adres na adres IP
+
+ - Request jest wysyłany do serwera gdzie znajdują się pliki potrzebne do wyświetlenia strony takie jak HTML(struktura), CSS(style), JS(logika/dynamika strony) 
+ 
+ -Przeglądarka internetowa(interpreter) może wyrenderować stronę internetową 
+ 
+ */
+
+/*3.
+ 
+ Do wyświetlenia ostatnich 5 błędów użył bym local storage. Daje nam to możliwość zapisaywania danych po stronie użtkownika. Dane zostają zapisane pomimo odświeżenia lub zamknięcia strony.  
+ */
+
+/* 4.
+
+ - Klasa Guest
+
+ Niepoprawny zapis constructora, poprawny zapis powinien wyglądać następująco:
+
+ 
+  constructor(firstName, lastName) {
+		this.firstName = firstName, 
+		this.lastName = lastName;
 	}
-};
-loadAll(['img/img-1.jpg', 'img/img-2.jpg', 'img/img-3.jpg']);
+
+
+	Niepoprawny zapis w metodzie "sayHello" zmiennych w template stringu oraz brak spacji pomiędzy zmiennymi, poprawny zapis:
+
+  sayHello() {
+		console.log(`Hi, me name is ${this.firstName} ${this.lastName}`);
+	}
+
+
+
+	Brak walidacji na typ danych string osobiście uważam za błąd więc również chciałbym tutaj zwrucić na to uwagę.
+
+
+
+	- Klasa Employee:
+
+	Klasa employee również zawiera identyczne błędy które opisałem powyżej.
+
+	    * brak zapisu constructora:
+
+	        constructor(firstName, lastName, permissionLevel) {
+		this.firstName = firstName, 
+		this.lastName = lastName,
+		this.permissionLevel = permissionLevel
+	}
+
+       * W metodzie sayHello "" zamiast ``
+	    
+*/
+
+for (var i = 1; i < 6; i++) {
+	setTimeout(() => console.log(i), 2000);
+	console.log(i);
+	//
+}
+
+class Guest {
+	firstName;
+	lastName;
+	constructor(firstName, lastName, permissionLevel) {
+		(this.firstName = firstName),
+			(this.lastName = lastName),
+			(this.permissionLevel = permissionLevel);
+	}
+
+	sayHello() {
+		console.log(`Hi, my name is ${firstName} ${lastName}`);
+	}
+}
