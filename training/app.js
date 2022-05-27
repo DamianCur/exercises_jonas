@@ -220,22 +220,18 @@ GOOD LUCK 😀
 	    
 */
 
-for (var i = 1; i < 6; i++) {
-	setTimeout(() => console.log(i), 2000);
-	console.log(i);
-	//
-}
+//unit testing
 
-class Guest {
-	firstName;
-	lastName;
-	constructor(firstName, lastName, permissionLevel) {
-		(this.firstName = firstName),
-			(this.lastName = lastName),
-			(this.permissionLevel = permissionLevel);
-	}
+const someOrder = {
+	items: [
+		{ name: 'Dragon food', price: 8 },
+		{ name: 'Dragon cage (small)', price: 800 },
+	],
+};
 
-	sayHello() {
-		console.log(`Hi, my name is ${firstName} ${lastName}`);
-	}
-}
+const orderTotal = (order) => someOrder.items.reduce((acc, cur) => {
+return acc + cur.price
+},0);
+
+const result = orderTotal(someOrder)
+console.log(result);
