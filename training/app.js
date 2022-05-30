@@ -217,21 +217,91 @@ GOOD LUCK 😀
 	}
 
        * W metodzie sayHello "" zamiast ``
-	    
+	 
+	
+
+
+
+
+5. & 6. 
+
+type accesLevel = "standard" | "extra";
+
+
+class Employee {
+    name: string
+    surname: string
+    permissionLevel: accesLevel
+
+
+    constructor(name: string, surname: string, permissionLevel: accesLevel) {
+        this.name = name,
+        this.surname = surname
+        this.permissionLevel = permissionLevel
+    }
+
+    welcomeGuest(guestName: string, guestSurname: string) {
+        if (this.permissionLevel !== 'extra') throw Error("Sorry you don't have permission for this.")
+
+        console.log(`Welcome ${guestName} ${guestSurname}.
+        What can I do for you?`);
+
+    }
+
+
+}
+
+
+
+
+class Clerk extends Employee {
+
+    constructor(name: string, surname: string, permissionLevel: accesLevel) {
+        super(name, surname, permissionLevel)
+
+    }
+}
+
+
+
+class Director extends Employee {
+
+    constructor(name: string, surname: string, permissionLevel: accesLevel) {
+        super(name, surname, permissionLevel)
+
+
+    }
+}
+
+
+const emp = new Employee("Damian", "Cur", "standard")
+emp.welcomeGuest("Jan", "Kowalski")
+
 */
 
 //unit testing
 
 const someOrder = {
 	items: [
-		{ name: 'Dragon food', price: 8 },
-		{ name: 'Dragon cage (small)', price: 800 },
+		{ name: 'Dragon food', price: 8, quantity: 8 },
+		{ name: 'Dragon cage (small)', price: 800, quantity: 2 },
+		{ name: 'Shipping', price: 40, shipping: true },
 	],
 };
 
-const orderTotal = (order) => someOrder.items.reduce((acc, cur) => {
-return acc + cur.price
-},0);
+const orderTotal = (order) => {
+	const totalItems = order.items
+	.filter((x) => !x.shipping)
+	.reduce((prev, cur) => prev + (cur.price * cur.quantity), 0)
 
-const result = orderTotal(someOrder)
+	const shippingItem = order.items.find(x => x.shipping)
+	
+	const shipping = totalItems > 1000 ? 0 : shippingItem.price
+	
+
+	return totalItems + shipping
+	
+};
+
+const result = orderTotal(someOrder);
 console.log(result);
