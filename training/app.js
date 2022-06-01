@@ -282,27 +282,49 @@ emp.welcomeGuest("Jan", "Kowalski")
 //unit testing
 // add mocha
 
-const someOrder = {
-	items: [
-		{ name: 'Dragon food', price: 8, quantity: 8 },
-		{ name: 'Dragon cage (small)', price: 800, quantity: 2 },
-		{ name: 'Shipping', price: 40, shipping: true },
-	],
-};
+// const someOrder = {
+// 	items: [
+// 		{ name: 'Dragon food', price: 8, quantity: 8 },
+// 		{ name: 'Dragon cage (small)', price: 800, quantity: 2 },
+// 		{ name: 'Shipping', price: 40, shipping: true },
+// 	],
+// };
 
-const orderTotal = (order) => {
-	const totalItems = order.items
-	.filter((x) => !x.shipping)
-	.reduce((prev, cur) => prev + (cur.price * cur.quantity), 0)
+// const orderTotal = (order) => {
+// 	const totalItems = order.items
+// 	.filter((x) => !x.shipping)
+// 	.reduce((prev, cur) => prev + (cur.price * cur.quantity), 0)
 
-	const shippingItem = order.items.find(x => x.shipping)
+// 	const shippingItem = order.items.find(x => x.shipping)
 	
-	const shipping = totalItems > 1000 ? 0 : shippingItem.price
+// 	const shipping = totalItems > 1000 ? 0 : shippingItem.price
 	
 
-	return totalItems + shipping
+// 	return totalItems + shipping
 	
-};
+// };
 
-const result = orderTotal(someOrder);
-console.log(result);
+// const result = orderTotal(someOrder);
+// console.log(result);
+
+
+
+// class Reservation {
+// static DATE_FORMAT: string = "YYYY-MM-DD";
+// arrival: string;
+// numberOfNights: number;
+// changeStayPeriod(today: string, newArrival: string, newLength?: number) {
+// //todo:
+// }
+// }
+// describe('Change reservation stay period', function () {
+// it('should change arrival when reservation is from the future, otherwise an error should be thro
+// wn', function () {
+// //todo:
+// });
+// it('should change stay length when new value is positive and greater than 1', function () {
+// //todo:
+
+module.exports = function() {
+	return 'hello'
+}
