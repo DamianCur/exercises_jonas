@@ -344,14 +344,6 @@ describe('Change reservation stay period', function () {
 
 9. 
 
-
-
-
-
-
-
-
-*/
 const collection = [
 	{ text: 'zero', value: 0 },
 	{ text: 'jeden', value: 1 },
@@ -371,13 +363,22 @@ const collection = [
 const quantityOfDivBy3 = (arr) => {
 	const arrClone = [...arr];
 	const arrOfNumDivBy3 = [];
+    
 
-	const values = arrClone.forEach((el) => {
+	arrClone.forEach((el) => {
 		if (el.value % 3 === 0) {
 			arrOfNumDivBy3.push(el.value);
 		}
 	});
 
     console.log(`There are ${arrOfNumDivBy3.length} divisible numbers by 3: ${arrOfNumDivBy3}`);
+    
 };
-console.log(quantityOfDivBy3(collection));
+quantityOfDivBy3(collection)
+
+
+
+
+
+
+*/
