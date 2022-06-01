@@ -277,56 +277,68 @@ class Director extends Employee {
 const emp = new Employee("Damian", "Cur", "standard")
 emp.welcomeGuest("Jan", "Kowalski")
 
-*/
-
-//unit testing
-// add mocha
-
-// const someOrder = {
-// 	items: [
-// 		{ name: 'Dragon food', price: 8, quantity: 8 },
-// 		{ name: 'Dragon cage (small)', price: 800, quantity: 2 },
-// 		{ name: 'Shipping', price: 40, shipping: true },
-// 	],
-// };
-
-// const orderTotal = (order) => {
-// 	const totalItems = order.items
-// 	.filter((x) => !x.shipping)
-// 	.reduce((prev, cur) => prev + (cur.price * cur.quantity), 0)
-
-// 	const shippingItem = order.items.find(x => x.shipping)
-	
-// 	const shipping = totalItems > 1000 ? 0 : shippingItem.price
-	
-
-// 	return totalItems + shipping
-	
-// };
-
-// const result = orderTotal(someOrder);
-// console.log(result);
 
 
+7.
 
-// class Reservation {
-// static DATE_FORMAT: string = "YYYY-MM-DD";
-// arrival: string;
-// numberOfNights: number;
-// changeStayPeriod(today: string, newArrival: string, newLength?: number) {
-// //todo:
-// }
-// }
-// describe('Change reservation stay period', function () {
-// it('should change arrival when reservation is from the future, otherwise an error should be thro
-// wn', function () {
-// //todo:
-// });
-// it('should change stay length when new value is positive and greater than 1', function () {
-// //todo:
+TDD refactor cycle is about to write a test first, then make it pass and then refactor your code.
 
-module.exports = {
-	sayHello: function() {
-		return "hello"
-	}
+
+class Reservation {
+    static DATE_FORMAT = "YYYY-MM-DD";
+
+    constructor(arrival, numberOfNights) {
+        this.arrival = arrival
+        this.numberOfNights = numberOfNights
+    }
+    changeStayPeriod(today, newArrival, newLength) {
+        today = new Date()
+        this.arrival = new Date(newArrival)
+        this.numberOfNights = newLength
+
+        return {
+            today: today,
+            newArrival: newArrival,
+            newLength: newLength
+        }
+    }
 }
+
+
+TESTS
+
+const Reservation = require('../Reservation.js');
+const myReservation = new Reservation(new Date('2022-07-30'));
+const chai = require('chai');
+const expect = chai.expect;
+console.log(myReservation.numberOfNights);
+
+describe('Change reservation stay period', function () {
+
+	const newResPerioid = myReservation.changeStayPeriod(
+		new Date(),
+		new Date('2222-10-10'),
+		365
+	);
+
+	it('should change arrival when reservation is from the future, otherwise an error should be thrown', function () {
+		expect(newResPerioid.newArrival).to.be.greaterThan(newResPerioid.today);
+	});
+
+	it('should change stay length when new value is positive and greater than 1', function () {
+		expect(newResPerioid.newLength).to.be.greaterThan(0);
+	});
+
+	it('should throw an error when new length is defined and is lower than 1', function () {    
+        expect(myReservation.numberOfNights).to.exist
+		expect(newResPerioid.newLength).to.be.greaterThan(0);
+	});
+
+	it('should not change stay length when new length is greater than 366', function () {
+		expect(newResPerioid.newLength).to.be.lessThan(366);
+	});
+});
+
+
+
+*/
