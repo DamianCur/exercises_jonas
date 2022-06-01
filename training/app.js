@@ -339,6 +339,45 @@ describe('Change reservation stay period', function () {
 	});
 });
 
+8. to do...
+
+
+9. 
+
+
+
+
+
+
 
 
 */
+const collection = [
+	{ text: 'zero', value: 0 },
+	{ text: 'jeden', value: 1 },
+	{ text: 'dwa', value: 2 },
+	{ text: 'trzy', value: 3 },
+	{ text: 'cztery', value: 4 },
+	{ text: 'pięć', value: 5 },
+	{ text: 'sześć', value: 6 },
+	{ text: 'siedem', value: 7 },
+	{ text: 'osiem', value: 8 },
+	{ text: 'dziewięć', value: 9 },
+	{ text: 'dziesięć', value: 10 },
+	{ text: 'jedenaście', value: 11 },
+	{ text: 'dwanaście', value: 12 },
+];
+
+const quantityOfDivBy3 = (arr) => {
+	const arrClone = [...arr];
+	const arrOfNumDivBy3 = [];
+
+	const values = arrClone.forEach((el) => {
+		if (el.value % 3 === 0) {
+			arrOfNumDivBy3.push(el.value);
+		}
+	});
+
+    console.log(`There are ${arrOfNumDivBy3.length} divisible numbers by 3: ${arrOfNumDivBy3}`);
+};
+console.log(quantityOfDivBy3(collection));
