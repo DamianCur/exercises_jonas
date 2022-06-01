@@ -325,6 +325,8 @@ emp.welcomeGuest("Jan", "Kowalski")
 // it('should change stay length when new value is positive and greater than 1', function () {
 // //todo:
 
-module.exports = function() {
-	return 'hello'
+module.exports = {
+	sayHello: function() {
+		return "hello"
+	}
 }
