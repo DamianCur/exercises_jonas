@@ -186,118 +186,114 @@ GOOD LUCK 😀
  Niepoprawny zapis constructora, poprawny zapis powinien wyglądać następująco:
 
  
-  constructor(firstName, lastName) {
-		this.firstName = firstName, 
-		this.lastName = lastName;
+ 
+ 
+ Niepoprawny zapis w metodzie "sayHello" zmiennych w template stringu oraz brak spacji pomiędzy zmiennymi, poprawny zapis:
+ 
+ sayHello() {
+	 console.log(`Hi, me name is ${this.firstName} ${this.lastName}`);
 	}
-
-
-	Niepoprawny zapis w metodzie "sayHello" zmiennych w template stringu oraz brak spacji pomiędzy zmiennymi, poprawny zapis:
-
-  sayHello() {
-		console.log(`Hi, me name is ${this.firstName} ${this.lastName}`);
-	}
-
-
-
-	Brak walidacji na typ danych string osobiście uważam za błąd więc również chciałbym tutaj zwrucić na to uwagę.
-
-
-
+	
+	
+	
+	Brak walidacji na typ danych string osobiście uważam to za błąd więc również chciałbym tutaj zwrucić na to uwagę.
+	
+	
+	
 	- Klasa Employee:
-
+	
 	Klasa employee również zawiera identyczne błędy które opisałem powyżej.
-
-	    * brak zapisu constructora:
-
-	        constructor(firstName, lastName, permissionLevel) {
+	
+	* brak zapisu constructora:
+	
+	constructor(firstName, lastName, permissionLevel) {
 		this.firstName = firstName, 
 		this.lastName = lastName,
 		this.permissionLevel = permissionLevel
 	}
-
-       * W metodzie sayHello "" zamiast ``
-	 
 	
+	* W metodzie sayHello "" zamiast ``
+	
+	
+	
+	
+	
+	
+	5. & 6. 
+	
+	type accesLevel = "standard" | "extra";
+	
+	
+	class Employee {
+		name: string
+		surname: string
+		permissionLevel: accesLevel
+		
+		
+		constructor(name: string, surname: string, permissionLevel: accesLevel) {
+			this.name = name,
+			this.surname = surname
+			this.permissionLevel = permissionLevel
+		}
+		
+		welcomeGuest(guestName: string, guestSurname: string) {
+			if (this.permissionLevel !== 'extra') throw Error("Sorry you don't have permission for this.")
+			
+			console.log(`Welcome ${guestName} ${guestSurname}.
+			What can I do for you?`);
+			
+		}
+		
+		
+	}
+	
+	
+	
+	
+	class Clerk extends Employee {
 
-
-
-
-5. & 6. 
-
-type accesLevel = "standard" | "extra";
-
-
-class Employee {
-    name: string
-    surname: string
-    permissionLevel: accesLevel
-
-
-    constructor(name: string, surname: string, permissionLevel: accesLevel) {
-        this.name = name,
-        this.surname = surname
-        this.permissionLevel = permissionLevel
-    }
-
-    welcomeGuest(guestName: string, guestSurname: string) {
-        if (this.permissionLevel !== 'extra') throw Error("Sorry you don't have permission for this.")
-
-        console.log(`Welcome ${guestName} ${guestSurname}.
-        What can I do for you?`);
-
-    }
-
-
-}
-
-
-
-
-class Clerk extends Employee {
-
-    constructor(name: string, surname: string, permissionLevel: accesLevel) {
-        super(name, surname, permissionLevel)
-
-    }
-}
-
-
-
-class Director extends Employee {
-
-    constructor(name: string, surname: string, permissionLevel: accesLevel) {
-        super(name, surname, permissionLevel)
-
-
-    }
-}
-
-
-const emp = new Employee("Damian", "Cur", "standard")
-emp.welcomeGuest("Jan", "Kowalski")
-
-
-
-7.
-
+		constructor(name: string, surname: string, permissionLevel: accesLevel) {
+			super(name, surname, permissionLevel)
+			
+		}
+	}
+	
+	
+	
+	class Director extends Employee {
+		
+		constructor(name: string, surname: string, permissionLevel: accesLevel) {
+			super(name, surname, permissionLevel)
+			
+			
+		}
+	}
+	
+	
+	const emp = new Employee("Damian", "Cur", "standard")
+	emp.welcomeGuest("Jan", "Kowalski")
+	
+	
+	
+	7.
+	
 TDD refactor cycle is about to write a test first, then make it pass and then refactor your code.
 
 
 class Reservation {
-    static DATE_FORMAT = "YYYY-MM-DD";
-
+	static DATE_FORMAT = "YYYY-MM-DD";
+	
     constructor(arrival, numberOfNights) {
-        this.arrival = arrival
+		this.arrival = arrival
         this.numberOfNights = numberOfNights
     }
     changeStayPeriod(today, newArrival, newLength) {
-        today = new Date()
+		today = new Date()
         this.arrival = new Date(newArrival)
         this.numberOfNights = newLength
-
+		
         return {
-            today: today,
+			today: today,
             newArrival: newArrival,
             newLength: newLength
         }
@@ -314,42 +310,42 @@ const expect = chai.expect;
 console.log(myReservation.numberOfNights);
 
 describe('Change reservation stay period', function () {
-
+	
 	const newResPerioid = myReservation.changeStayPeriod(
 		new Date(),
 		new Date('2222-10-10'),
 		365
-	);
-
-	it('should change arrival when reservation is from the future, otherwise an error should be thrown', function () {
-		expect(newResPerioid.newArrival).to.be.greaterThan(newResPerioid.today);
+		);
+		
+		it('should change arrival when reservation is from the future, otherwise an error should be thrown', function () {
+			expect(newResPerioid.newArrival).to.be.greaterThan(newResPerioid.today);
+		});
+		
+		it('should change stay length when new value is positive and greater than 1', function () {
+			expect(newResPerioid.newLength).to.be.greaterThan(0);
+		});
+		
+		it('should throw an error when new length is defined and is lower than 1', function () {    
+			expect(myReservation.numberOfNights).to.exist
+			expect(newResPerioid.newLength).to.be.greaterThan(0);
+		});
+		
+		it('should not change stay length when new length is greater than 366', function () {
+			expect(newResPerioid.newLength).to.be.lessThan(366);
+		});
 	});
-
-	it('should change stay length when new value is positive and greater than 1', function () {
-		expect(newResPerioid.newLength).to.be.greaterThan(0);
-	});
-
-	it('should throw an error when new length is defined and is lower than 1', function () {    
-        expect(myReservation.numberOfNights).to.exist
-		expect(newResPerioid.newLength).to.be.greaterThan(0);
-	});
-
-	it('should not change stay length when new length is greater than 366', function () {
-		expect(newResPerioid.newLength).to.be.lessThan(366);
-	});
-});
-
-8. to do...
-
-
-9. 
-
-const collection = [
-	{ text: 'zero', value: 0 },
-	{ text: 'jeden', value: 1 },
-	{ text: 'dwa', value: 2 },
-	{ text: 'trzy', value: 3 },
-	{ text: 'cztery', value: 4 },
+	
+	8. to do...
+	
+	
+	9. 
+	
+	const collection = [
+		{ text: 'zero', value: 0 },
+		{ text: 'jeden', value: 1 },
+		{ text: 'dwa', value: 2 },
+		{ text: 'trzy', value: 3 },
+		{ text: 'cztery', value: 4 },
 	{ text: 'pięć', value: 5 },
 	{ text: 'sześć', value: 6 },
 	{ text: 'siedem', value: 7 },
@@ -364,13 +360,13 @@ const quantityOfDivBy3 = (arr) => {
 	const arrClone = [...arr];
 	const arrOfNumDivBy3 = [];
     
-
+	
 	arrClone.forEach((el) => {
 		if (el.value % 3 === 0) {
 			arrOfNumDivBy3.push(el.value);
 		}
 	});
-
+	
     console.log(`There are ${arrOfNumDivBy3.length} divisible numbers by 3: ${arrOfNumDivBy3}`);
     
 };
@@ -382,3 +378,42 @@ quantityOfDivBy3(collection)
 
 
 */
+
+// const collection = [
+// 	{ text: 'zero', value: 0 },
+// 	{ text: 'jeden', value: 1 },
+// 	{ text: 'dwa', value: 2 },
+// 	{ text: 'trzy', value: 3 },
+// 	{ text: 'cztery', value: 4 },
+// 	{ text: 'pięć', value: 5 },
+// 	{ text: 'sześć', value: 6 },
+// 	{ text: 'siedem', value: 7 },
+// 	{ text: 'osiem', value: 8 },
+// 	{ text: 'dziewięć', value: 9 },
+// 	{ text: 'dziesięć', value: 10 },
+// 	{ text: 'jedenaście', value: 11 },
+// 	{ text: 'dwanaście', value: 12 },
+// ];
+
+// const quantityOfDivBy3 = (arr) => {
+// 	if (!Array.isArray(arr)) throw Error('The argument is not an array.');
+
+// 	const arrClone = [...arr];
+// 	const arrOfNumDivBy3 = [];
+
+// 	arrClone.forEach((el) => {
+// 		if (el.value % 3 === 0) {
+// 			arrOfNumDivBy3.push(el.value);
+// 		}
+// 	});
+
+// 	console.log(
+// 		`There are ${arrOfNumDivBy3.length} divisible numbers by 3: ${arrOfNumDivBy3}`
+// 	);
+// };
+// quantityOfDivBy3(collection);
+
+
+for (var i = 1; i < 6; i++) {
+	setTimeout(() => console.log(i), 200);
+}
