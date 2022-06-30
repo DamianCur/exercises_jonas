@@ -1,0 +1,16 @@
+15
+112C:\Users\1420d\OneDrive\Desktop\complete-javascript-course-master\17-Modern-JS-Modules-Tooling\final\.prettierrc132886955210000000 0
+109C:\Users\1420d\OneDrive\Desktop\complete-javascript-course-master\17-Modern-JS-Modules-Tooling\final\clean.js132886955210000000 0
+124C:\Users\1420d\OneDrive\Desktop\complete-javascript-course-master\17-Modern-JS-Modules-Tooling\final\dist\script.0b6e4fd3.js132886955210000000 0
+105C:\Users\1420d\OneDrive\Desktop\complete-javascript-course-master\17-Modern-JS-Modules-Tooling\final\dist132888319470860506 1
+116C:\Users\1420d\OneDrive\Desktop\complete-javascript-course-master\17-Modern-JS-Modules-Tooling\final\shoppingCart.js132886955210000000 0
+111C:\Users\1420d\OneDrive\Desktop\complete-javascript-course-master\17-Modern-JS-Modules-Tooling\final\index.html132886955210000000 0
+110C:\Users\1420d\OneDrive\Desktop\complete-javascript-course-master\17-Modern-JS-Modules-Tooling\final\script.js132886955210000000 0
+128C:\Users\1420d\OneDrive\Desktop\complete-javascript-course-master\17-Modern-JS-Modules-Tooling\final\dist\script.0b6e4fd3.js.map132886955210000000 0
+113C:\Users\1420d\OneDrive\Desktop\complete-javascript-course-master\17-Modern-JS-Modules-Tooling\final\package.json132886955210000000 0
+118C:\Users\1420d\OneDrive\Desktop\complete-javascript-course-master\17-Modern-JS-Modules-Tooling\final\package-lock.json132886955210000000 0
+124C:\Users\1420d\OneDrive\Desktop\complete-javascript-course-master\17-Modern-JS-Modules-Tooling\final\dist\script.75da7f30.js132886955210000000 0
+116C:\Users\1420d\OneDrive\Desktop\complete-javascript-course-master\17-Modern-JS-Modules-Tooling\final\dist\index.html132886955210000000 0
+114C:\Users\1420d\OneDrive\Desktop\complete-javascript-course-master\17-Modern-JS-Modules-Tooling\final\dist\index.js132886955210000000 0
+118C:\Users\1420d\OneDrive\Desktop\complete-javascript-course-master\17-Modern-JS-Modules-Tooling\final\dist\index.js.map132886955210000000 0
+128C:\Users\1420d\OneDrive\Desktop\complete-javascript-course-master\17-Modern-JS-Modules-Tooling\final\dist\script.75da7f30.js.map132886955210000000 0
